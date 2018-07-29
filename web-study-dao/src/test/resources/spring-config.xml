@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				        " default-autowire="byName">
+    <!-- 1.读入需要注入的bean：注解方式注入 -->
+    <context:component-scan base-package="com.sainty.study" />
+
+    <!-- 2.属性文件读入 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:important.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 3.spring xml配置文件导入 -->
+    <import resource="classpath:spring/*.xml"/>
+</beans>

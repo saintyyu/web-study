@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+web-study-web/target/
+web-study-service/target/
+web-study-domain/target/
+web-study-dao/target/
+/web-study-dao/src/test/resources/important.properties
+/web-study-web/src/main/resources/important.properties

@@ -1,0 +1,9 @@
+#if($!pageModel)
+    $pageModel.name，您好！<br/>
+    以下为您的个人信息：<br/>
+    年龄：$pageModel.age<br/>
+    电话：$pageModel.phone<br/>
+    邮箱：$pageModel.email<br/>
+#else
+    访客您好，暂未查到您的个人信息。
+#end

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN "
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+    <resultMap id="userInfo" type="User">
+        <result property="id" column="id"/>
+        <result property="name" column="user_name"/>
+        <result property="age" column="age"/>
+        <result property="gender" column="gender"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+    </resultMap>
+
+    <sql id="tableName">web_study_user</sql>
+
+    <sql id="fields">
+        id, user_name, age, gender, phone, email
+    </sql>
+
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO
+    <include refid="tableName"/>(<include refid="fields"/>) VALUES(#{id},#{name},#{age},#{gender},#{phone},#{email})
+
+    </insert>
+    <select id="selectUserByName" resultMap="userInfo" parameterType="java.lang.String">
+        SELECT
+        <include refid="fields"/>
+        FROM
+        <include refid="tableName"/>
+        WHERE user_name=#{name}
+    </select>
+</mapper>
