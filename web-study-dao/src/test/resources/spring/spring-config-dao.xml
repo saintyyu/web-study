@@ -5,16 +5,24 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd"
     default-autowire="byName">
 
-    <bean id="baseDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" lazy-init="true">
+    <bean id="baseDataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
         <property name="maxActive" value="30"/>
-        <property name="initialSize" value="3"/>
+        <property name="initialSize" value="5"/>
+        <property name="minIdle" value="5" />
         <property name="timeBetweenEvictionRunsMillis" value="60000"/>
         <property name="minEvictableIdleTimeMillis" value="60000"/>
-        <property name="numTestsPerEvictionRun" value="20"/>
         <property name="url" value="${jdbc.url}"/>
+
+        <property name="validationQuery" value="select 1" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="false" />
+        <property name="defaultAutoCommit" value="false" />
+
     </bean>
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
