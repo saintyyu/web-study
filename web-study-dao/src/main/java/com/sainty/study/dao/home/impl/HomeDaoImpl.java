@@ -3,6 +3,7 @@ package com.sainty.study.dao.home.impl;
 import com.sainty.study.dao.BaseDao;
 import com.sainty.study.dao.home.HomeDao;
 import com.sainty.study.domain.home.User;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 @Component("homeDao")
 public class HomeDaoImpl extends BaseDao implements HomeDao{
 
+    @Cacheable(value = "queryUserInfoByName", key = "'_name:' + #name")
     @Override
     public User queryUserInfoByName(String name) {
         return selectOne("User.selectUserByName", name);
